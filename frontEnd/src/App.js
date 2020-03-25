@@ -1,18 +1,18 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Species from "./species";
-import Admin from "./admin";
+import Todo from "./app/index";
+import Spc from "./app/axios";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/species">
-          <Species />
+        <Route path="/todo">
+          <Todo />
         </Route>
         <Route path="/">
-          <Admin />
+          <Spc />
         </Route>
       </Switch>
     </Router>
