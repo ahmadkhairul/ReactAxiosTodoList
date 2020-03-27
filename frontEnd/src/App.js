@@ -12,11 +12,11 @@ function App() {
         <Route path="/country">
           <Country />
         </Route>
-        <Route path="/todo">
-          <Todo />
+        <Route path="/spc">
+          <Spc />
         </Route>
         <Route path="/">
-          <Spc />
+          <Todo />
         </Route>
       </Switch>
     </Router>

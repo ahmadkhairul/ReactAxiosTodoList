@@ -17,7 +17,7 @@ const App = () => {
       <button onClick={() => console.log(country)}>GET COUNTRY</button>
       <div>
         <ul>
-          {!country == null || !country == []
+          {!country === null || !country === []
             ? country.map((item, index) => <li key={index}>{item.name}</li>)
             : null}
         </ul>

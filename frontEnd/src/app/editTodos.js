@@ -8,8 +8,12 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const App = ({ data }) => {
+import { editTodos } from "../_actions/todos";
+import { connect } from "react-redux";
+
+const App = ({ data, editTodos }) => {
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(data.name);
 
   return (
     <>
@@ -26,14 +30,23 @@ const App = ({ data }) => {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            value={data}
+            name="todo"
+            value={value}
             type="text"
             fullWidth
+            onChange={event => {
+              setValue(event.target.value);
+            }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)} color="primary">
+          <Button
+            onClick={() => {
+              setOpen(false);
+              editTodos(value, data._id);
+            }}
+            color="primary"
+          >
             Yes
           </Button>
           <Button onClick={() => setOpen(false)} color="secondary">
@@ -45,4 +58,16 @@ const App = ({ data }) => {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    // todos: state.todos
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    editTodos: (name, id) => dispatch(editTodos(name, id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
